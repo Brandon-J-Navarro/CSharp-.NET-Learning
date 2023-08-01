@@ -46,7 +46,7 @@ $xaml.SelectNodes("//*[@Name]") | ForEach-Object {
         throw
     }
 }
-# Get-Variable var_*
+Get-Variable var_*
 
 $var_btnQuery.Add_Click( {
     #clear the result box
