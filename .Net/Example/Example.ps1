@@ -19,10 +19,14 @@ Function Get-FixedDisk {
 }
 
 # where is the XAML file?
-$xamlFile = ".\Example\MainWindow.xaml"
+$xamlFile = ".\.NET\Example\Example\MainWindow.xaml"
 
 #create window
-$inputXML = Get-Content $xamlFile -Raw
+$inputXML = Get-Content $xamlFile -Raw -ErrorAction Ignore
+if($null -eq $inputXML){
+    $xamlFile = ".\Example\MainWindow.xaml"
+    $inputXML = Get-Content $xamlFile -Raw
+}
 $inputXML = $inputXML -replace 'mc:Ignorable="d"', '' -replace "x:N", 'N' -replace '^<Win.*', '<Window'
 [XML]$XAML = $inputXML
 
