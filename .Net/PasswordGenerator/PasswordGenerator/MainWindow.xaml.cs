@@ -36,46 +36,6 @@ namespace PasswordGenerator
         {
             InitializeComponent();
             GeneratePassword_Click(this.GeneratePassword, new RoutedEventArgs());
-            if (chkPasswordStrength.Content == "Error: Password length should be between 4 and 40.")
-            {
-                chkPasswordStrength.Foreground = Brushes.Red;
-                chkPasswordStrength.FontSize = 12;
-            }
-            if (chkPasswordStrength.Content == "Invalid input. Please enter a valid number.")
-            {
-                chkPasswordStrength.Foreground = Brushes.Red;
-                chkPasswordStrength.FontSize = 12;
-            }
-            if (chkPasswordStrength.Content == "Very Weak")
-            {
-                chkPasswordStrength.Foreground = Brushes.Red;
-                chkPasswordStrength.FontSize = 16;
-            }
-            if (chkPasswordStrength.Content == "Very Unsecure")
-            {
-                chkPasswordStrength.Foreground = Brushes.Red;
-                chkPasswordStrength.FontSize = 16;
-            }
-            if (chkPasswordStrength.Content == "Unsecure")
-            {
-                chkPasswordStrength.Foreground = Brushes.Orange;
-                chkPasswordStrength.FontSize = 16;
-            }
-            if (chkPasswordStrength.Content == "Medium")
-            {
-                chkPasswordStrength.Foreground = Brushes.LightGreen;
-                chkPasswordStrength.FontSize = 16;
-            }
-            if (chkPasswordStrength.Content == "Secure")
-            {
-                chkPasswordStrength.Foreground = Brushes.Green;
-                chkPasswordStrength.FontSize = 16;
-            }
-            if (chkPasswordStrength.Content == "Very Secure")
-            {
-                chkPasswordStrength.Foreground = Brushes.DarkGreen;
-                chkPasswordStrength.FontSize = 16;
-            }
         }
 
         private void ChkIncludeLowerChar_Checked(object sender, RoutedEventArgs e)
@@ -163,6 +123,47 @@ namespace PasswordGenerator
             else
             {
                 chkPasswordStrength.Content = "Invalid input. Please enter a valid number.";
+            }
+
+            if (chkPasswordStrength.Content == "Error: Password length should be between 4 and 40.")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 12;
+            }
+            if (chkPasswordStrength.Content == "Invalid input. Please enter a valid number.")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 12;
+            }
+            if (chkPasswordStrength.Content == "Very Weak")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Very Unsecure")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Unsecure")
+            {
+                chkPasswordStrength.Foreground = Brushes.Orange;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Medium")
+            {
+                chkPasswordStrength.Foreground = Brushes.LightGreen;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Secure")
+            {
+                chkPasswordStrength.Foreground = Brushes.Green;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Very Secure")
+            {
+                chkPasswordStrength.Foreground = Brushes.DarkGreen;
+                chkPasswordStrength.FontSize = 16;
             }
         }
 
@@ -413,46 +414,6 @@ namespace PasswordGenerator
             if (e.Key == Key.Return && passwordLengthInput.Text != "")
             {
                 GeneratePassword_Click(this.GeneratePassword, new RoutedEventArgs());
-                if (chkPasswordStrength.Content == "Error: Password length should be between 4 and 40.")
-                {
-                    chkPasswordStrength.Foreground = Brushes.Red;
-                    chkPasswordStrength.FontSize = 12;
-                }
-                if (chkPasswordStrength.Content == "Invalid input. Please enter a valid number.")
-                {
-                    chkPasswordStrength.Foreground = Brushes.Red;
-                    chkPasswordStrength.FontSize = 12;
-                }
-                if (chkPasswordStrength.Content == "Very Weak")
-                {
-                    chkPasswordStrength.Foreground = Brushes.Red;
-                    chkPasswordStrength.FontSize = 16;
-                }
-                if (chkPasswordStrength.Content == "Very Unsecure")
-                {
-                    chkPasswordStrength.Foreground = Brushes.Red;
-                    chkPasswordStrength.FontSize = 16;
-                }
-                if (chkPasswordStrength.Content == "Unsecure")
-                {
-                    chkPasswordStrength.Foreground = Brushes.Orange;
-                    chkPasswordStrength.FontSize = 16;
-                }
-                if (chkPasswordStrength.Content == "Medium")
-                {
-                    chkPasswordStrength.Foreground = Brushes.LightGreen;
-                    chkPasswordStrength.FontSize = 16;
-                }
-                if (chkPasswordStrength.Content == "Secure")
-                {
-                    chkPasswordStrength.Foreground = Brushes.Green;
-                    chkPasswordStrength.FontSize = 16;
-                }
-                if (chkPasswordStrength.Content == "Very Secure")
-                {
-                    chkPasswordStrength.Foreground = Brushes.DarkGreen;
-                    chkPasswordStrength.FontSize = 16;
-                }
             }
         }
     }
