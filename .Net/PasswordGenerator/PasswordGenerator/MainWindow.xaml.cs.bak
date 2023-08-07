@@ -1,0 +1,185 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+
+namespace PasswordGenerator
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            Generate();
+        }
+        private void Generate()
+        {
+            string passwordLengthInput = Console.ReadLine();
+            if (float.TryParse(passwordLengthInput, out float passwordLength))
+            {
+                if (passwordLength < 4 || passwordLength > 2048)
+                {
+                    Console.WriteLine("Error: Password length should be between 4 and 2048.");
+                }
+                else
+                {
+                    string password = GetPassword(passwordLength);
+                    Console.WriteLine("Generated Password: " + password);
+                    CheckPasswordStrength(password);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
+        }
+
+        private void CheckPasswordStrength(string password)
+        {
+
+        }
+
+        private string GetPassword(float passwordLength)
+        {
+
+            StringBuilder password = new StringBuilder();
+            char[] array = new char[0];
+
+            if (chkIncludeLowerChar)
+                array = array.Concat(lowerChars).ToArray();
+
+            if (chkIncludeUpperChar)
+                array = array.Concat(upperChars).ToArray();
+
+            if (chkIncludeNumbers)
+                array = array.Concat(numbers).ToArray();
+
+            if (chkIncludeSymbols)
+                array = array.Concat(symbols).ToArray();
+
+            if (!chkExcludeSimilar)
+            {
+                if (chkIncludeLowerChar)
+                    array = array.Concat(similarsLower).ToArray();
+
+                if (chkIncludeUpperChar)
+                    array = array.Concat(similarsUpper).ToArray();
+
+                if (chkIncludeNumbers)
+                    array = array.Concat(similarsNumbers).ToArray();
+
+                if (chkIncludeSymbols)
+                    array = array.Concat(similarsSymbols).ToArray();
+            }
+
+            if (!chkExcludeAmbiguous && chkIncludeSymbols)
+                array = array.Concat(ambiguous).ToArray();
+
+            if (array.Length > 1)
+            {
+                for (int i = 0; i < passwordLength; i++)
+                {
+                    int randomIndex = random.Next(array.Length);
+                    password.Append(array[randomIndex]);
+                }
+            }
+
+            return password.ToString();
+        }
+
+        private void GeneratePassword_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PasswordLengthInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Password_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Copy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PasswordStrength(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeLowerChar_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeLowerChar_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeUpperChar_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeUpperChar_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeNumbers_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeNumbers_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkIncludeSymbols_Checked(object sender, RoutedEventArgs e)
+        {
+ 
+        }
+
+        private void ChkIncludeSymbols_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkExcludeAmbiguous_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkExcludeAmbiguous_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkExcludeSimilar_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChkExcludeSimilar_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}
