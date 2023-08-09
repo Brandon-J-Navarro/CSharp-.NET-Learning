@@ -71,8 +71,8 @@ namespace PowershellTesting
 
             // execute the script
             PowerShell ps = PowerShell.Create();
-            //ps.AddScript(string.Format(@"Import-module '.\Scripts\Example.ps1'; Get-FixedDisk -Computer '{0}'", txtComputer.Text));
-            ps.AddCommand("pwd");
+            ps.AddScript(string.Format(@"Import-module '.\Scripts\Example.ps1'; Get-FixedDisk -Computer '{0}'", txtComputer.Text));
+            //ps.AddCommand("pwd");
             //ps.AddParameter("ComputerName", txtComputer.Text);
             var results = ps.Invoke();
            
@@ -88,11 +88,10 @@ namespace PowershellTesting
 
             foreach (var item in results)
             {
-                 txtResults.Text = item.ToString();
-                //txtResults.Text = txtResults.Text + "DeviceID: " + Convert.ToString(item.Members[name:"DeviceID"].Value) + "\n";
-                //txtResults.Text = txtResults.Text + "VolumeName: " + Convert.ToString(item.Members[name: "VolumeName"].Value) + "\n";
-                //txtResults.Text = txtResults.Text + "FreeSpace: " + Convert.ToString(item.Members[name: "FreeSpace"].Value) + "\n";
-                //txtResults.Text = txtResults.Text + "Size: " + Convert.ToString(item.Members[name: "Size"].Value) + "\n\n";
+                txtResults.Text = txtResults.Text + "DeviceID: " + Convert.ToString(item.Members[name:"DeviceID"].Value) + "\n";
+                txtResults.Text = txtResults.Text + "VolumeName: " + Convert.ToString(item.Members[name: "VolumeName"].Value) + "\n";
+                txtResults.Text = txtResults.Text + "FreeSpace: " + Convert.ToString(item.Members[name: "FreeSpace"].Value) + "\n";
+                txtResults.Text = txtResults.Text + "Size: " + Convert.ToString(item.Members[name: "Size"].Value) + "\n\n";
             }
             return stringBuilder.ToString();
         }
