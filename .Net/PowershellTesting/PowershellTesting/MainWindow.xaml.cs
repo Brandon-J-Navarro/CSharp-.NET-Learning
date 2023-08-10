@@ -1,31 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Linq;
 using System.Management.Automation;
-using System.IO;
 using System.Management.Automation.Runspaces;
-using Namotion.Reflection;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+
 
 namespace PowershellTesting
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -39,12 +20,7 @@ namespace PowershellTesting
         private void btnQuery_Click(object sender, RoutedEventArgs e)
         {
             RunScript();
-            //txtResults.Text = txtResults.Text + "DeviceID: $($item.DeviceID)`n";
-            //txtResults.Text = txtResults.Text + "VolumeName: $($item.VolumeName)`n";
-            //txtResults.Text = txtResults.Text + "FreeSpace: $($item.FreeSpace)`n";
-            //txtResults.Text = txtResults.Text + "Size: $($item.Size)`n`n";
-            //txtResults.Text = stringBuilder;
-
+            txtResults.Text = stringBuilder;
         }
         private string RunScript()
         {
@@ -79,19 +55,12 @@ namespace PowershellTesting
             // close the runspace
             runspace.Close();
 
-            // convert the script result into a single string
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (PSObject obj in results)
-            {
-                stringBuilder.AppendLine(obj.ToString());
-            }
-
             foreach (var item in results)
             {
-                txtResults.Text = txtResults.Text + "DeviceID: " + Convert.ToString(item.Members[name:"DeviceID"].Value) + "\n";
-                txtResults.Text = txtResults.Text + "VolumeName: " + Convert.ToString(item.Members[name: "VolumeName"].Value) + "\n";
-                txtResults.Text = txtResults.Text + "FreeSpace: " + Convert.ToString(item.Members[name: "FreeSpace"].Value) + "\n";
-                txtResults.Text = txtResults.Text + "Size: " + Convert.ToString(item.Members[name: "Size"].Value) + "\n\n";
+                stringBuilder = stringBuilder + "DeviceID: " + Convert.ToString(item.Members[name:"DeviceID"].Value) + "\n";
+                stringBuilder = stringBuilder + "VolumeName: " + Convert.ToString(item.Members[name: "VolumeName"].Value) + "\n";
+                stringBuilder = stringBuilder + "FreeSpace: " + Convert.ToString(item.Members[name: "FreeSpace"].Value) + "\n";
+                stringBuilder = stringBuilder + "Size: " + Convert.ToString(item.Members[name: "Size"].Value) + "\n\n";
             }
             return stringBuilder.ToString();
         }
