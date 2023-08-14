@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 
 namespace PasswordGenerator
@@ -42,6 +35,7 @@ namespace PasswordGenerator
         public MainWindow()
         {
             InitializeComponent();
+            GeneratePassword_Click(this.GeneratePassword, new RoutedEventArgs());
         }
 
         private void ChkIncludeLowerChar_Checked(object sender, RoutedEventArgs e)
@@ -113,9 +107,9 @@ namespace PasswordGenerator
         {
             if (float.TryParse(PasswordLengthInput, out float passwordLength))
             {
-                if (passwordLength < 4 || passwordLength > 2048)
+                if (passwordLength < 4 || passwordLength > 40)
                 {
-                    chkPasswordStrength.Content = "Error: Password length should be between 4 and 2048.";
+                    chkPasswordStrength.Content = "Error: Password length should be between 4 and 40.";
                 }
                 else
                 {
@@ -130,11 +124,47 @@ namespace PasswordGenerator
             {
                 chkPasswordStrength.Content = "Invalid input. Please enter a valid number.";
             }
-        }
 
-        private void Password_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            if (chkPasswordStrength.Content == "Error: Password length should be between 4 and 40.")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 12;
+            }
+            if (chkPasswordStrength.Content == "Invalid input. Please enter a valid number.")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 12;
+            }
+            if (chkPasswordStrength.Content == "Very Weak")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Very Unsecure")
+            {
+                chkPasswordStrength.Foreground = Brushes.Red;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Unsecure")
+            {
+                chkPasswordStrength.Foreground = Brushes.Orange;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Medium")
+            {
+                chkPasswordStrength.Foreground = Brushes.LightGreen;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Secure")
+            {
+                chkPasswordStrength.Foreground = Brushes.Green;
+                chkPasswordStrength.FontSize = 16;
+            }
+            if (chkPasswordStrength.Content == "Very Secure")
+            {
+                chkPasswordStrength.Foreground = Brushes.DarkGreen;
+                chkPasswordStrength.FontSize = 16;
+            }
         }
 
         private void Copy_Click(object sender, RoutedEventArgs e)
@@ -240,7 +270,6 @@ namespace PasswordGenerator
             {
                 strengthScore = strengthScore + 1;
             }
-
             if (Password.Length < 3)
             {
                 strengthScore = strengthScore - 15;
@@ -253,7 +282,6 @@ namespace PasswordGenerator
             {
                 strengthScore = strengthScore - 10;
             }
-
             if (Contains(Password, lowerChars))
             {
                 strengthScore = strengthScore + 1;
@@ -313,7 +341,6 @@ namespace PasswordGenerator
             {
                 strengthScore = strengthScore - 2;
             }
-
             if (uniqueCharactersCount > 14)
             {
                 strengthScore = strengthScore + 4;
@@ -330,7 +357,6 @@ namespace PasswordGenerator
             {
                 strengthScore = strengthScore + 1;
             }
-
             if (strengthScore <= 3)
             {
                 StrengthStatus = "Very Unsecure";
@@ -362,7 +388,6 @@ namespace PasswordGenerator
                     StrengthStatus = "Medium";
                 }
             }
-
             return StrengthStatus;
         }
 
@@ -379,14 +404,17 @@ namespace PasswordGenerator
 
         private void PasswordStrength(object sender, RoutedEventArgs e)
         {
-            var label = sender as Label;
-            label.Content = StrengthStatus;
+            var label = sender as TextBox;
+
+            label.Text = StrengthStatus;
         }
 
-        static void CheckPasswordStrength(string Password)
+        private void OnKeyInputLength(object sender, KeyEventArgs e)
         {
-
+            if (e.Key == Key.Return && passwordLengthInput.Text != "")
+            {
+                GeneratePassword_Click(this.GeneratePassword, new RoutedEventArgs());
+            }
         }
-
     }
 }
