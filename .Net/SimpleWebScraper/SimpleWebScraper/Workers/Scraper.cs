@@ -14,7 +14,7 @@ namespace SimpleWebScraper.Workers
         {
             List<string> scrapedElements = new List<string>();
 
-            MatchCollection matches = Regex.Matches(scrapeCriteria.Data,scrapeCriteria.Regex,scrapeCriteria.RegexOptions);
+            MatchCollection matches = Regex.Matches(scrapeCriteria.Data,scrapeCriteria.Regex,scrapeCriteria.RegexOption);
 
             foreach (Match match in matches)
             {
@@ -24,9 +24,9 @@ namespace SimpleWebScraper.Workers
                 }
                 else
                 {
-                    foreach(var parts in scrapeCriteria.Parts)
+                    foreach(var part in scrapeCriteria.Parts)
                     {
-                        Match matchedPart = Regex.Match(match.Groups[0].Value,parts.Regex,parts.RegexOptions);
+                        Match matchedPart = Regex.Match(match.Groups[0].Value,part.Regex,part.RegexOption);
                         if (matchedPart.Success)
                         {
                             scrapedElements.Add(matchedPart.Groups[1].Value);

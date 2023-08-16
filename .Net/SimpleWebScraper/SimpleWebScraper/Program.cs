@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using SimpleWebScraper.Data;
 using SimpleWebScraper.Builders;
 using SimpleWebScraper.Workers;
@@ -29,25 +28,25 @@ namespace SimpleWebScraper
 
                     ScrapeCriteria scrapeCriteria = new ScrapeCriteriaBuilder()
                         .WithData(content)
-                        .WithRegex(@"<li(.*?)<\/li>")
+                        .WithRegex(@"(<li class=""cl-static-search-result"" title=""(.*)"">\n(\s*)<a href=""(.*?)"">\n(\s*)<div class=""title"">(.*?)<\/div>\n(\s*)\n(\s*)<div class=""details"">(.*?)\n(\s*)<div class=""price"">(.*?)<\/div>\n(\s*)<div class=""location"">\n(\s*)(.*?)\n(\s*)<\/div>\n(\s*)<\/div>\n(\s*)<\/a>\n(\s*)<\/li>)")
                         .WithRegexOption(RegexOptions.ExplicitCapture)
                         .WithPart(new ScrapeCriteriaPartBuilder()
                             .WithRegex(@"<div class=""title"">(.*?)<\/div>")
                             .WithRegexOption(RegexOptions.Singleline)
                             .Build())
                         .WithPart(new ScrapeCriteriaPartBuilder()
-                            .WithRegex(@"href=""(.*?)""")
+                            .WithRegex(@"href=\""(.*?)\""")
                             .WithRegexOption(RegexOptions.Singleline)
                             .Build())
                         .Build();
 
                     Scraper scraper = new Scraper();
 
-                    var scraptedElements = scraper.Scrape(scrapeCriteria);
+                    var scrapedElements = scraper.Scrape(scrapeCriteria);
 
-                    if (scraptedElements.Any())
+                    if (scrapedElements.Any())
                     {
-                        foreach (var scraptedElement in scraptedElements)
+                        foreach (var scraptedElement in scrapedElements)
                         {
                             Console.WriteLine(scraptedElement);
                         }
