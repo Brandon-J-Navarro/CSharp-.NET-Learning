@@ -25,6 +25,7 @@ namespace SimpleCalculator
                 double secondNumber = inputConvert.ConvertInputToNumeric(Console.ReadLine());
             
                 double result = calculatorEngine.Calculate(opertion,firstNumber,secondNumber);
+                Console.WriteLine("The answer is: ");
                 Console.WriteLine(result);
 
             }
