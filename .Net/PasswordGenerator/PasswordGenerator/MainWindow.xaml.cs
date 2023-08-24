@@ -1,5 +1,6 @@
 ﻿using PasswordGenerator.Model;
 using PasswordGenerator.Repository;
+using PasswordGenerator.Resources;
 using System;
 using System.Linq;
 using System.Text;
@@ -92,7 +93,7 @@ namespace PasswordGenerator
             {
                 if (passwordLength < 4 || passwordLength > 40)
                 {
-                    chkPasswordStrength.Content = "Error: Password length should be between 4 and 40.";
+                    chkPasswordStrength.Content = Constans.error;
                 }
                 else
                 {
@@ -105,45 +106,44 @@ namespace PasswordGenerator
             }
             else
             {
-                chkPasswordStrength.Content = "Invalid input. Please enter a valid number.";
+                chkPasswordStrength.Content = Constans.invalidInput;
             }
-
-            if (chkPasswordStrength.Content == "Error: Password length should be between 4 and 40.")
+            if (chkPasswordStrength.Content == Constans.error)
             {
                 chkPasswordStrength.Foreground = Brushes.Red;
                 chkPasswordStrength.FontSize = 12;
             }
-            if (chkPasswordStrength.Content == "Invalid input. Please enter a valid number.")
+            if (chkPasswordStrength.Content == Constans.invalidInput)
             {
                 chkPasswordStrength.Foreground = Brushes.Red;
                 chkPasswordStrength.FontSize = 12;
             }
-            if (chkPasswordStrength.Content == "Very Weak")
+            if (chkPasswordStrength.Content == Constans.veryWeak)
             {
                 chkPasswordStrength.Foreground = Brushes.Red;
                 chkPasswordStrength.FontSize = 16;
             }
-            if (chkPasswordStrength.Content == "Very Unsecure")
+            if (chkPasswordStrength.Content == Constans.veryUnsecure)
             {
                 chkPasswordStrength.Foreground = Brushes.Red;
                 chkPasswordStrength.FontSize = 16;
             }
-            if (chkPasswordStrength.Content == "Unsecure")
+            if (chkPasswordStrength.Content == Constans.unsecure)
             {
                 chkPasswordStrength.Foreground = Brushes.Orange;
                 chkPasswordStrength.FontSize = 16;
             }
-            if (chkPasswordStrength.Content == "Medium")
+            if (chkPasswordStrength.Content == Constans.medium)
             {
                 chkPasswordStrength.Foreground = Brushes.LightGreen;
                 chkPasswordStrength.FontSize = 16;
             }
-            if (chkPasswordStrength.Content == "Secure")
+            if (chkPasswordStrength.Content == Constans.secure)
             {
                 chkPasswordStrength.Foreground = Brushes.Green;
                 chkPasswordStrength.FontSize = 16;
             }
-            if (chkPasswordStrength.Content == "Very Secure")
+            if (chkPasswordStrength.Content == Constans.verySecure)
             {
                 chkPasswordStrength.Foreground = Brushes.DarkGreen;
                 chkPasswordStrength.FontSize = 16;
@@ -158,13 +158,12 @@ namespace PasswordGenerator
         private void PasswordStrength(object sender, RoutedEventArgs e)
         {
             var label = sender as TextBox;
-
             label.Text = passwordGeneratorModel.StrengthStatus;
         }
 
         private void OnKeyInputLength(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return && passwordLengthInput.Text != "")
+            if (e.Key == Key.Return && passwordLengthInput.Text != string.Empty)
             {
                 GeneratePassword_Click(this.GeneratePassword, new RoutedEventArgs());
             }
