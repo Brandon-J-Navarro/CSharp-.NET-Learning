@@ -4,11 +4,9 @@ using System.Linq;
 using Microsoft.Extensions.Configuration;
 
 // NuGet Packages Required:
-//      Microsoft.Extensions.Configuration.CommandLine,
-//      Microsoft.Extensions.Configuration.EnvironmentVariables,
-//      Microsoft.Extensions.Configuration.Json,
 //      Microsoft.Extensions.Configuration.UserSecrets,
 //      Microsoft.Extensions.DependencyInjection
+//      Microsoft.Extensions.Configuration
 
 namespace UserSecretsExample
 {
