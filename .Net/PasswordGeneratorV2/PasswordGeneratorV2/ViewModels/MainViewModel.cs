@@ -1,19 +1,8 @@
 ﻿using Caliburn.Micro;
-using PasswordGeneratorV2.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows;
 using PasswordGeneratorV2.Repository;
-using System.Net.NetworkInformation;
 using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Security.RightsManagement;
+using Prism.Commands;
 
 namespace PasswordGeneratorV2.ViewModels
 {
@@ -21,24 +10,40 @@ namespace PasswordGeneratorV2.ViewModels
     {
         private string _password;
         private string _strength;
-        private string _passwordInputLength;
-        private bool _chkIncludeLowerChar;
-        private bool _chkIncludeUpperChar;
-        private bool _chkIncludeNumbers;
-        private bool _chkIncludeSymbols;
-        private bool _chkExcludeAmbiguous;
-        private bool _chkExcludeSimilar;
-
+        private string _passwordInputLength = "10";
+        private bool _chkIncludeLowerChar = true;
+        private bool _chkIncludeUpperChar = true;
+        private bool _chkIncludeNumbers = true;
+        private bool _chkIncludeSymbols = true;
+        private bool _chkExcludeAmbiguous = false;
+        private bool _chkExcludeSimilar = false;
+        private ICommand _onKeyInputLength;
 
         public MainViewModel()
         {
             Generate();
         }
 
+        public ICommand OnKeyInputLength
+        {
+            get
+                {
+                if (_onKeyInputLength == null)
+                {
+                    _onKeyInputLength = new DelegateCommand(delegate ()
+                    {
+                        Generate();
+                    });
+                }
+                return _onKeyInputLength;
+            }
+        }
+
         public void Copy()
         {
             Clipboard.SetText(_password);
         }
+
         public void Generate()
         {
             if (float.TryParse(_passwordInputLength, out float _passwordLength))
@@ -59,9 +64,13 @@ namespace PasswordGeneratorV2.ViewModels
                         _chkExcludeSimilar);
                     _strength = PasswordStrengthCommand.GetPasswordStrength(_password);
                 }
-                UpdatePassword(_password );
-                UpdateStrength(_strength );
             }
+            else
+            {
+                _strength = Constans.invalidInput;
+            }
+            UpdatePassword(_password);
+            UpdateStrength(_strength);
         }
 
         private void UpdatePassword(string password)
@@ -120,14 +129,6 @@ namespace PasswordGeneratorV2.ViewModels
         {
             get { return _chkExcludeSimilar; }
             set { _chkExcludeSimilar = value; }
-        }
-
-        private void OnKeyInputLength(object sender, KeyEventArgs Enter)
-        {
-            if (Enter.Key == Key.Return && _passwordInputLength != string.Empty)
-            {
-                Generate();
-            }
         }
     }
 }

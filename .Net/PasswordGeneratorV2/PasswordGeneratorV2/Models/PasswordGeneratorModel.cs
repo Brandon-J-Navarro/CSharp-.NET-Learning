@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PasswordGeneratorV2.ViewModels;
 
 namespace PasswordGeneratorV2.Models
 {
@@ -14,8 +15,8 @@ namespace PasswordGeneratorV2.Models
         //public bool ChkIncludeSymbols { get; set; }
         //public bool ChkExcludeAmbiguous { get; set; }
         //public bool ChkExcludeSimilar { get; set; }
-        //public string StrengthStatus { get; set; }
-        //public string PasswordLengthInput { get; set; }
+        //public string Strength { get; set; }
+        //public string PasswordLength { get; set; }
         //public string Password { get; set; }
     }
 }
