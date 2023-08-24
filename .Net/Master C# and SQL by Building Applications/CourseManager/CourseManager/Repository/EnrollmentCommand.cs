@@ -47,7 +47,7 @@ namespace CourseManager.Repository
             datatable.Columns.Add("EnrollmentId", typeof(int));
             datatable.Columns.Add("StudentId", typeof(int));
             datatable.Columns.Add("CourseId", typeof(int));
-            datatable.Rows.Add(enrollmentModel.EnrollmentId, enrollmentModel.StudentId, enrollmentModel.CouseId);
+            datatable.Rows.Add(enrollmentModel.EnrollmentId, enrollmentModel.StudentId, enrollmentModel.CourseId);
 
             using(SqlConnection connection = new SqlConnection(_connectionString))
             {
