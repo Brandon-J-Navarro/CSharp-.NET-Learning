@@ -1,52 +1,51 @@
-﻿using System;
+﻿using PasswordGenerator.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PasswordGenerator.Resources;
 
-namespace PasswordGenerator.Workers
+namespace PasswordGenerator.Repository
 {
-    internal class PasswordBuilder
+    internal class PasswordGenerateCommand
     {
         static Random random = new Random();
-        
-        public static string GetPassword(float passwordLength, bool ChkIncludeLowerChar, bool ChkIncludeUpperChar,
+
+        internal static string GetPassword(float passwordLength, bool ChkIncludeLowerChar, bool ChkIncludeUpperChar,
             bool ChkIncludeNumbers, bool ChkIncludeSymbols, bool ChkExcludeSimilar, bool ChkExcludeAmbiguous)
         {
-
             StringBuilder Password = new StringBuilder();
             char[] array = new char[0];
 
             if (ChkIncludeLowerChar)
-                array = array.Concat(Constants.lowerChars).ToArray();
+                array = array.Concat(Constans.lowerChars).ToArray();
 
             if (ChkIncludeUpperChar)
-                array = array.Concat(Constants.upperChars).ToArray();
+                array = array.Concat(Constans.upperChars).ToArray();
 
             if (ChkIncludeNumbers)
-                array = array.Concat(Constants.numbers).ToArray();
+                array = array.Concat(Constans.numbers).ToArray();
 
             if (ChkIncludeSymbols)
-                array = array.Concat(Constants.symbols).ToArray();
+                array = array.Concat(Constans.symbols).ToArray();
 
             if (!ChkExcludeSimilar)
             {
                 if (ChkIncludeLowerChar)
-                    array = array.Concat(Constants.similarsLower).ToArray();
+                    array = array.Concat(Constans.similarsLower).ToArray();
 
                 if (ChkIncludeUpperChar)
-                    array = array.Concat(Constants.similarsUpper).ToArray();
+                    array = array.Concat(Constans.similarsUpper).ToArray();
 
                 if (ChkIncludeNumbers)
-                    array = array.Concat(Constants.similarsNumbers).ToArray();
+                    array = array.Concat(Constans.similarsNumbers).ToArray();
 
                 if (ChkIncludeSymbols)
-                    array = array.Concat(Constants.similarsSymbols).ToArray();
+                    array = array.Concat(Constans.similarsSymbols).ToArray();
             }
 
             if (!ChkExcludeAmbiguous && ChkIncludeSymbols)
-                array = array.Concat(Constants.ambiguous).ToArray();
+                array = array.Concat(Constans.ambiguous).ToArray();
 
             if (array.Length > 1)
             {
@@ -59,5 +58,6 @@ namespace PasswordGenerator.Workers
 
             return Password.ToString();
         }
+
     }
 }
