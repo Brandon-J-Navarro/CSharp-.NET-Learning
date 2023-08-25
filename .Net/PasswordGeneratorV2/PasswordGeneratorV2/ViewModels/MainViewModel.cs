@@ -1,8 +1,11 @@
 ﻿using Caliburn.Micro;
 using System.Windows;
 using PasswordGeneratorV2.Repository;
+using PasswordGeneratorV2.Views;
 using System.Windows.Input;
 using Prism.Commands;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace PasswordGeneratorV2.ViewModels
 {
@@ -18,6 +21,8 @@ namespace PasswordGeneratorV2.ViewModels
         private bool _chkExcludeAmbiguous = false;
         private bool _chkExcludeSimilar = false;
         private ICommand _onKeyInputLength;
+        private Brush _color;
+        private int _size;
 
         public MainViewModel()
         {
@@ -73,18 +78,73 @@ namespace PasswordGeneratorV2.ViewModels
             UpdateStrength(_strength);
         }
 
-        private void UpdatePassword(string password)
+        public void UpdatePassword(string password)
         {
             Password = password;
             NotifyOfPropertyChange(() => Password);
         }
 
-        private void UpdateStrength(string strength)
+        public void UpdateStrength(string strength)
         {
+
+            if (strength == Constans.error)
+            {
+                _color = Brushes.Red;
+                _size = 12;
+            }
+            if (strength == Constans.invalidInput)
+            {
+                _color = Brushes.Red;
+                _size = 12;
+            }
+            if (strength == Constans.veryWeak)
+            {
+                _color = Brushes.Red;
+                _size = 16;
+            }
+            if (strength == Constans.veryUnsecure)
+            {
+                _color = Brushes.Red;
+                _size = 16;
+            }
+            if (strength == Constans.unsecure)
+            {
+                _color = Brushes.OrangeRed;
+                _size = 16;
+            }
+            if (strength == Constans.medium)
+            {
+                _color = Brushes.Orange;
+                _size = 16;
+            }
+            if (strength == Constans.secure)
+            {
+                _color = Brushes.Green;
+                _size = 16;
+            }
+            if (strength == Constans.verySecure)
+            {
+                _color = Brushes.DarkGreen;
+                _size = 16;
+            }
             Strength = strength;
+            ColorFont = _color;
+            SizeFont = _size;
             NotifyOfPropertyChange(() => Strength);
+            NotifyOfPropertyChange(() => ColorFont);
+            NotifyOfPropertyChange(() => SizeFont);
         }
 
+        public Brush ColorFont
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+        public int SizeFont
+        {
+            get { return _size; }
+            set { _size = value; }
+        }
         public string Password
         {
             get { return _password; }

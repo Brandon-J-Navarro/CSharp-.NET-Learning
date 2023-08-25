@@ -63,7 +63,7 @@
                     <TextBox Text="{Binding Path=Password}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,7,0,7">
-                    <TextBlock Text="{Binding Path=Strength}" FontWeight="Bold" FontSize="14" />
+                    <TextBlock Text="{Binding Path=Strength}" FontWeight="Bold" FontSize="{Binding Path=SizeFont}" Foreground="{Binding Path=ColorFont}" />
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="2" Margin="0,7,0,7">
                     <TextBox Text="{Binding Path=PasswordLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" HorizontalAlignment="Left">

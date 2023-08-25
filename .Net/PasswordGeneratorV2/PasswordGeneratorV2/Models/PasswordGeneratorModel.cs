@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using PasswordGeneratorV2.ViewModels;
 
 namespace PasswordGeneratorV2.Models
