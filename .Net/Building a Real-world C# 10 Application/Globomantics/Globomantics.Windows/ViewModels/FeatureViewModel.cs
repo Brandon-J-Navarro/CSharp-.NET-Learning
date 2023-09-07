@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Globomantics.Domain;
 using Globomantics.Infrastructure.Data.Repository;
+using Globomantics.Windows.Messages;
 
 namespace Globomantics.Windows.ViewModels;
 
@@ -61,14 +63,14 @@ public class FeatureViewModel : BaseTodoViewModel<Feature>
         await repository.AddAsync(Model);
         await repository.SaveChangesAsync();
 
-        // TODO: Send message that the item is saved
+        WeakReferenceMessenger.Default.Send<TodoSavedMessage>(new(Model));
     }
 
     public override void UpdateModel(Todo model)
     {
-        if (Model is not Feature feature) return;
+        if (model is not Feature feature) return;
 
-        base.UpdateModel(model);
+        base.UpdateModel(feature);
 
         Description = feature.Description;
     }
