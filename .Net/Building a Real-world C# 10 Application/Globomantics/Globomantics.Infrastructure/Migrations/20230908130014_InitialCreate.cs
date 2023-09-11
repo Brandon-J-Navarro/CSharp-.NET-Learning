@@ -30,21 +30,22 @@ namespace Globomantics.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DueDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Bug_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Bug_AssigedToId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Bug_AssignedToId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AssinedToId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Severity = table.Column<int>(type: "int", nullable: true),
                     AffectedVersion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AffectedUsers = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Component = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Priority = table.Column<int>(type: "int", nullable: true),
-                    AssigedToId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    AssignedToId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,22 +56,20 @@ namespace Globomantics.Infrastructure.Migrations
                         principalTable: "Todo",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Todo_Users_AssigedToId",
-                        column: x => x.AssigedToId,
+                        name: "FK_Todo_Users_AssignedToId",
+                        column: x => x.AssignedToId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Todo_Users_Bug_AssigedToId",
-                        column: x => x.Bug_AssigedToId,
+                        name: "FK_Todo_Users_Bug_AssignedToId",
+                        column: x => x.Bug_AssignedToId,
                         principalTable: "Users",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Todo_Users_CreatedById",
                         column: x => x.CreatedById,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -97,14 +96,14 @@ namespace Globomantics.Infrastructure.Migrations
                 column: "BugId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Todo_AssigedToId",
+                name: "IX_Todo_AssignedToId",
                 table: "Todo",
-                column: "AssigedToId");
+                column: "AssignedToId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Todo_Bug_AssigedToId",
+                name: "IX_Todo_Bug_AssignedToId",
                 table: "Todo",
-                column: "Bug_AssigedToId");
+                column: "Bug_AssignedToId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Todo_CreatedById",

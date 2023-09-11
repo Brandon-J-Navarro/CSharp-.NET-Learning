@@ -34,7 +34,7 @@ public class FeatureRepository : TodoRepository<Feature>
         featureToUpdate.Description = feature.Description;
         featureToUpdate.Title = feature.Title;
         featureToUpdate.Priority = feature.Priority;
-        featureToUpdate.AssigedTo = user;
+        featureToUpdate.AssignedTo = user;
         featureToUpdate.CreatedBy = user;
 
         Context.Features.Update(featureToUpdate);
@@ -46,7 +46,7 @@ public class FeatureRepository : TodoRepository<Feature>
 
         await SetParentAsync(featrueToAdd, feature);
 
-        featrueToAdd.AssigedTo = user;
+        featrueToAdd.AssignedTo = user;
         featrueToAdd.CreatedBy = user;
 
         await Context.AddAsync(featrueToAdd);

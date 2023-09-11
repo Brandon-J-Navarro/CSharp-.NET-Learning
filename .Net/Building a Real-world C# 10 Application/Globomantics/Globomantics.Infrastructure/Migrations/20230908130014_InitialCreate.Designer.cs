@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Globomantics.Infrastructure.Migrations
 {
     [DbContext(typeof(GlobomanticsDbContext))]
-    [Migration("20230907152745_InitialCreate")]
+    [Migration("20230908130014_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -51,7 +51,7 @@ namespace Globomantics.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CreatedById")
+                    b.Property<Guid?>("CreatedById")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedDate")
@@ -123,7 +123,10 @@ namespace Globomantics.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("AssigedToId")
+                    b.Property<Guid?>("AssignedToId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AssinedToId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -133,12 +136,12 @@ namespace Globomantics.Infrastructure.Migrations
                     b.Property<int>("Severity")
                         .HasColumnType("int");
 
-                    b.HasIndex("AssigedToId");
+                    b.HasIndex("AssignedToId");
 
                     b.ToTable("Todo", t =>
                         {
-                            t.Property("AssigedToId")
-                                .HasColumnName("Bug_AssigedToId");
+                            t.Property("AssignedToId")
+                                .HasColumnName("Bug_AssignedToId");
 
                             t.Property("Description")
                                 .HasColumnName("Bug_Description");
@@ -151,7 +154,7 @@ namespace Globomantics.Infrastructure.Migrations
                 {
                     b.HasBaseType("Globomantics.Infrastructure.Data.Models.TodoTask");
 
-                    b.Property<Guid>("AssigedToId")
+                    b.Property<Guid?>("AssignedToId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Component")
@@ -165,7 +168,7 @@ namespace Globomantics.Infrastructure.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 
-                    b.HasIndex("AssigedToId");
+                    b.HasIndex("AssignedToId");
 
                     b.HasDiscriminator().HasValue("Feature");
                 });
@@ -181,9 +184,7 @@ namespace Globomantics.Infrastructure.Migrations
                 {
                     b.HasOne("Globomantics.Infrastructure.Data.Models.User", "CreatedBy")
                         .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedById");
 
                     b.HasOne("Globomantics.Infrastructure.Data.Models.Todo", "Parent")
                         .WithMany()
@@ -196,22 +197,20 @@ namespace Globomantics.Infrastructure.Migrations
 
             modelBuilder.Entity("Globomantics.Infrastructure.Data.Models.Bug", b =>
                 {
-                    b.HasOne("Globomantics.Infrastructure.Data.Models.User", "AssigedTo")
+                    b.HasOne("Globomantics.Infrastructure.Data.Models.User", "AssignedTo")
                         .WithMany()
-                        .HasForeignKey("AssigedToId");
+                        .HasForeignKey("AssignedToId");
 
-                    b.Navigation("AssigedTo");
+                    b.Navigation("AssignedTo");
                 });
 
             modelBuilder.Entity("Globomantics.Infrastructure.Data.Models.Feature", b =>
                 {
-                    b.HasOne("Globomantics.Infrastructure.Data.Models.User", "AssigedTo")
+                    b.HasOne("Globomantics.Infrastructure.Data.Models.User", "AssignedTo")
                         .WithMany()
-                        .HasForeignKey("AssigedToId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssignedToId");
 
-                    b.Navigation("AssigedTo");
+                    b.Navigation("AssignedTo");
                 });
 
             modelBuilder.Entity("Globomantics.Infrastructure.Data.Models.Bug", b =>
