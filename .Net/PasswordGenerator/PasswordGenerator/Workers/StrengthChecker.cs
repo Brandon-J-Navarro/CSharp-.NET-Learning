@@ -1,15 +1,17 @@
-﻿using PasswordGenerator.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows;
+using PasswordGenerator.Resources;
 
-namespace PasswordGenerator.Repository
+namespace PasswordGenerator.Workers
 {
-    internal class PasswordStrengthCommand
+    internal class StrengthChecker
     {
-        internal static string GetPasswordStrength(string Password)
+        static string GetPasswordStrength(string Password)
         {
             int strengthScore = 0;
             string StrengthStatus = "Very Weak";
@@ -70,35 +72,35 @@ namespace PasswordGenerator.Repository
             {
                 strengthScore = strengthScore - 10;
             }
-            if (Contains(Password, Constans.lowerChars))
+            if (Contains(Password, Constants.lowerChars))
             {
                 strengthScore = strengthScore + 1;
             }
-            if (Contains(Password, Constans.similarsLower))
+            if (Contains(Password, Constants.similarsLower))
             {
                 strengthScore = strengthScore + 1;
             }
-            if (Contains(Password, Constans.upperChars))
+            if (Contains(Password, Constants.upperChars))
             {
                 strengthScore = strengthScore + 2;
             }
-            if (Contains(Password, Constans.similarsUpper))
+            if (Contains(Password, Constants.similarsUpper))
             {
                 strengthScore = strengthScore + 2;
             }
-            if (Contains(Password, Constans.numbers) || Contains(Password, Constans.similarsNumbers))
+            if (Contains(Password, Constants.numbers) || Contains(Password, Constants.similarsNumbers))
             {
                 strengthScore = strengthScore + 2;
             }
-            if (Contains(Password, Constans.symbols))
+            if (Contains(Password, Constants.symbols))
             {
                 strengthScore = strengthScore + 2;
             }
-            if (Contains(Password, Constans.similarsSymbols))
+            if (Contains(Password, Constants.similarsSymbols))
             {
                 strengthScore = strengthScore + 2;
             }
-            if (Contains(Password, Constans.ambiguous))
+            if (Contains(Password, Constants.ambiguous))
             {
                 strengthScore = strengthScore + 2;
             }
@@ -178,7 +180,6 @@ namespace PasswordGenerator.Repository
             }
             return StrengthStatus;
         }
-
         static bool Contains(string str, char[] array)
         {
             return array.Any(c => str.Contains(c));
@@ -188,6 +189,13 @@ namespace PasswordGenerator.Repository
         {
             string uniqueCharacters = new string(str.Distinct().ToArray());
             return uniqueCharacters.Length;
+        }
+
+        private void PasswordStrength(object sender, RoutedEventArgs e, string strengthStatus)
+        {
+            var label = sender as TextBox;
+
+            label.Text = strengthStatus;
         }
     }
 }
