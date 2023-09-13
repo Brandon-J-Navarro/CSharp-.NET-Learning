@@ -12,7 +12,8 @@ namespace PasswordGenerator.Repository
         internal static string GetPasswordStrength(string Password)
         {
             int strengthScore = 0;
-            string StrengthStatus = Constans.veryWeak;
+            string StrengthStatus = "Very Weak";
+
             if (Password.Length > 40)
             {
                 strengthScore = strengthScore + 11;
@@ -101,7 +102,9 @@ namespace PasswordGenerator.Repository
             {
                 strengthScore = strengthScore + 2;
             }
+
             int uniqueCharactersCount = CountUniqueCharacters(Password);
+
             if (uniqueCharactersCount < 3)
             {
                 strengthScore = strengthScore - 7;
@@ -144,33 +147,33 @@ namespace PasswordGenerator.Repository
             }
             if (strengthScore <= 3)
             {
-                StrengthStatus = Constans.veryUnsecure;
+                StrengthStatus = "Very Unsecure";
             }
             else if (strengthScore <= 5)
             {
-                StrengthStatus = Constans.unsecure;
+                StrengthStatus = "Unsecure";
             }
             else if (strengthScore <= 7)
             {
-                StrengthStatus = Constans.medium;
+                StrengthStatus = "Medium";
             }
             else if (strengthScore <= 9)
             {
-                StrengthStatus = Constans.secure;
+                StrengthStatus = "Secure";
             }
             else
             {
                 if (Password.Length >= 9)
                 {
-                    StrengthStatus = Constans.verySecure;
+                    StrengthStatus = "Very Secure";
                 }
                 else if (Password.Length >= 7)
                 {
-                    StrengthStatus = Constans.secure;
+                    StrengthStatus = "Secure";
                 }
                 else
                 {
-                    StrengthStatus = Constans.medium;
+                    StrengthStatus = "Medium";
                 }
             }
             return StrengthStatus;

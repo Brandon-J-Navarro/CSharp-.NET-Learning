@@ -17,13 +17,5 @@ namespace PasswordGenerator.Resources
         internal static char[] similarsNumbers = { '1', '0' };
         internal static char[] similarsSymbols = { '|' };
         internal static char[] ambiguous = { '"', '\'', '(', ')', ',', '.', '/', ':', ';', '<', '=', '>', '[', '\\', ']', '^', '_', '`', '{', '}', '~' };
-        internal static string veryWeak = "Very Weak";
-        internal static string veryUnsecure = "Very Unsecure";
-        internal static string unsecure = "Unsecure";
-        internal static string medium = "Medium";
-        internal static string secure = "Secure";
-        internal static string verySecure = "Very Secure";
-        internal static string invalidInput = "Invalid input. Please enter a valid number.";
-        internal static string error = "Error: Password length should be between 4 and 40.";
     }
 }
