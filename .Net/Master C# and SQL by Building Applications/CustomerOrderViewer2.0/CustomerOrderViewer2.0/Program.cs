@@ -1,18 +1,12 @@
 ﻿using CustomerOrderViewer2._0.Repository;
-using CustomerOrderViewer2._0.Models;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.Configuration;
 
-namespace CustomerOrderViewer2._0
+namespace CustomerOrderViewer2._0.Models
 {
-    class Program
+    class Progam
     {
-        private static readonly IConfiguration _configuration = Startup.BuildConfiguation();
-        private static string _connectionString = _configuration["ConnectionStrings:sqlConnectionString"];
+        private static string _connectionString = @"Data Source=localhost;Initial Catalog=CustomerOrderViewer;Persist Security Info=True;User ID=sa;Password=***********";
         private static readonly CustomerOrderCommand _customerOrderCommand = new CustomerOrderCommand(_connectionString);
         private static readonly CustomerCommand _customerCommand = new CustomerCommand(_connectionString);
         private static readonly ItemCommand _itemCommand = new ItemCommand(_connectionString);
