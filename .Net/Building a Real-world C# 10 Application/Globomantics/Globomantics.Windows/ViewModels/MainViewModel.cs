@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace Globomantics.Windows.ViewModels;
@@ -19,11 +20,22 @@ namespace Globomantics.Windows.ViewModels;
 public class MainViewModel : ObservableObject, 
     IViewModel
 {
+    private string searchText = "";
     private string statusText = "Everything is OK!";
     private bool isLoading;
     private bool isInitialized;
     private readonly IRepository<User> userRepository;
     private readonly IRepository<TodoTask> todoRepository;
+
+    public string SearchText
+    {
+        get => searchText;
+        set
+        {
+            searchText = value;
+            OnPropertyChanged(nameof(SearchText));
+        }
+    }
 
     public string StatusText 
     {
@@ -48,6 +60,7 @@ public class MainViewModel : ObservableObject,
 
     public ICommand ExportCommand { get; set; }
     public ICommand ImportCommand { get; set; }
+    public ICommand SearchCommand { get; set; }
 
     public Action<string>? ShowAlert { get; set; }
     public Action<string>? ShowError { get; set; }
@@ -108,6 +121,24 @@ public class MainViewModel : ObservableObject,
         ImportCommand = new RelayCommand(async () =>
         {
             await ImportAsync();
+        });
+
+        SearchCommand = new RelayCommand(async () =>
+        {
+            Unfinished.Clear();
+
+            var items = await todoRepository.AllAsync();
+
+            var query = items.AsQueryable().Where(item => !item.IsCompleted && !item.IsDeleted);
+
+            if (!string.IsNullOrWhiteSpace(SearchText) || !SearchText.Equals("*", StringComparison.OrdinalIgnoreCase))
+            {
+                query = query.Where(item => item.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+            }
+            foreach (var item in query)
+            {
+                Unfinished.Add(item);
+            }
         });
     }
 
