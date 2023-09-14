@@ -25,16 +25,16 @@ public class BugRepository : TodoRepository<Bug>
         }
     }
 
-    private async Task UpdateAsync(Bug bug, Data.Models.Bug exisitingBug, Data.Models.User user)
+    private async Task UpdateAsync(Bug bug, Models.Bug exisitingBug, Models.User user)
     {
-        await SetParentAsync(exisitingBug, bug);
-
         exisitingBug.IsCompleted = bug.IsCompleted;
         exisitingBug.AffectedVersion = bug.AffectedVersion;
         exisitingBug.AffectedUsers = bug.AffectedUsers;
         exisitingBug.Description = bug.Description;
         exisitingBug.Title = bug.Title;
         exisitingBug.Severity = (Data.Models.Severity) bug.Severity;
+
+        await SetParentAsync(exisitingBug, bug);
 
         Context.Bugs.Update(exisitingBug);
     }

@@ -44,7 +44,7 @@ public class DomainToDataMapping
             Severity = (Data.Models.Severity)bug.Severity,
             Title = bug.Title,
             Description = bug.Description,
-            AssinedToId = bug.AssignedTo?.Id,
+            AssignedToId = bug.AssignedTo?.Id,
             CreatedById = bug.CreatedBy?.Id
         };
     }

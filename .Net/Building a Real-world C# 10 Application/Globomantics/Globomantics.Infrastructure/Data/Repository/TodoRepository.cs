@@ -25,7 +25,7 @@ public abstract class TodoRepository<T> : IRepository<T>
             .Include(t => t.CreatedBy)
             .Include(t => t.Parent)
             .Select(x => DataToDomainMapping.MapTodoFromData<Data.Models.TodoTask, T>(x))
-            .ToListAsync();
+            .ToArrayAsync();
     }
 
     public virtual async Task<T> FindByAsync(string title)
