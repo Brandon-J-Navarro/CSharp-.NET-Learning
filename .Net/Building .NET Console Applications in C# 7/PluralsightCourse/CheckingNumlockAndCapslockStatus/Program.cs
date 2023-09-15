@@ -1,4 +1,4 @@
-﻿namespace WaitingForKeysToBePressed;
+﻿namespace CheckingNumlockAndCapslockStatus;
 
 class program
 {
@@ -10,10 +10,13 @@ class program
             {
 
             }
-            // Prevents an echo of key pressed "aa" > "a"
+
             var key = Console.ReadKey(true);
 
-            Console.WriteLine(key.KeyChar);
+            if(Console.CapsLock && Console.NumberLock)
+            {
+                Console.WriteLine(key.KeyChar);
+            }
 
             switch (key.Key)
             {
