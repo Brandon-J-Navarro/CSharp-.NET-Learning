@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EnumArguments": {
+      "commandName": "Project",
+      "commandLineArgs": "-o descending"
+    }
+  }
+}

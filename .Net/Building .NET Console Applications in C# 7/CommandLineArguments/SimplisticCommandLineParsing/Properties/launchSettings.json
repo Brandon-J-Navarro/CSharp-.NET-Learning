@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SimplisticCommandLineParsing": {
+      "commandName": "Project",
+      "commandLineArgs": "10 \"hello world\""
+    }
+  }
+}

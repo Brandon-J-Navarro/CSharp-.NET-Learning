@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ImplicitArgumentNames": {
+      "commandName": "Project",
+      "commandLineArgs": "--name brandon"
+    }
+  }
+}

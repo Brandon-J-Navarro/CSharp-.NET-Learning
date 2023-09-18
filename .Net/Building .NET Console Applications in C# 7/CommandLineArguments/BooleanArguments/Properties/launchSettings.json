@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BooleanArguments": {
+      "commandName": "Project",
+      "commandLineArgs": "-v"
+    }
+  }
+}
