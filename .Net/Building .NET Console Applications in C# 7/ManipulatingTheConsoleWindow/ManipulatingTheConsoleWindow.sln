@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeTheConsoleWindowTitle", "ChangeTheConsoleWindowTitle\ChangeTheConsoleWindowTitle.csproj", "{E0CD37F4-8B80-45E0-9DC2-01CD8C66AFC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManipulateConsoleWindowSize", "ManipulateConsoleWindowSize\ManipulateConsoleWindowSize.csproj", "{50271DD5-2133-41A5-96B4-6C155DACA447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForegroundAndBackgroundColor", "ForegroundAndBackgroundColor\ForegroundAndBackgroundColor.csproj", "{61D3F9F4-00A8-4A22-B472-D814958958A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateBusyIndicatorAnimation", "CreateBusyIndicatorAnimation\CreateBusyIndicatorAnimation.csproj", "{6E08E807-5A3B-4C32-BF67-8B54697921E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratingSoundFromAConsole", "GeneratingSoundFromAConsole\GeneratingSoundFromAConsole.csproj", "{2D1A0CDC-3796-483A-A646-92702DA4031C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovingAreasOfTheScreenBuffer", "MovingAreasOfTheScreenBuffer\MovingAreasOfTheScreenBuffer.csproj", "{709AD59C-F11E-49DA-8B52-46477ECA44BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0CD37F4-8B80-45E0-9DC2-01CD8C66AFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0CD37F4-8B80-45E0-9DC2-01CD8C66AFC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0CD37F4-8B80-45E0-9DC2-01CD8C66AFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0CD37F4-8B80-45E0-9DC2-01CD8C66AFC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50271DD5-2133-41A5-96B4-6C155DACA447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50271DD5-2133-41A5-96B4-6C155DACA447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50271DD5-2133-41A5-96B4-6C155DACA447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50271DD5-2133-41A5-96B4-6C155DACA447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D3F9F4-00A8-4A22-B472-D814958958A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D3F9F4-00A8-4A22-B472-D814958958A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D3F9F4-00A8-4A22-B472-D814958958A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D3F9F4-00A8-4A22-B472-D814958958A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E08E807-5A3B-4C32-BF67-8B54697921E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E08E807-5A3B-4C32-BF67-8B54697921E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E08E807-5A3B-4C32-BF67-8B54697921E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E08E807-5A3B-4C32-BF67-8B54697921E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D1A0CDC-3796-483A-A646-92702DA4031C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1A0CDC-3796-483A-A646-92702DA4031C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1A0CDC-3796-483A-A646-92702DA4031C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1A0CDC-3796-483A-A646-92702DA4031C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{709AD59C-F11E-49DA-8B52-46477ECA44BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{709AD59C-F11E-49DA-8B52-46477ECA44BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{709AD59C-F11E-49DA-8B52-46477ECA44BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{709AD59C-F11E-49DA-8B52-46477ECA44BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8D8E282-904C-41A1-BC63-374D477879AA}
+	EndGlobalSection
+EndGlobal

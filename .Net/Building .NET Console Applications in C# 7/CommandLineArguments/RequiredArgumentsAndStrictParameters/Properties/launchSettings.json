@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RequiredArgumentsAndStrictParameters": {
+      "commandName": "Project",
+      "commandLineArgs": "-t5"
+    }
+  }
+}

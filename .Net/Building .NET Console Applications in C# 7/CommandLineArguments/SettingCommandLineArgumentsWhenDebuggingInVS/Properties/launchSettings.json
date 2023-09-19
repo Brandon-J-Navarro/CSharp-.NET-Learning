@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SettingCommandLineArgumentsWhenDebuggingInVS": {
+      "commandName": "Project",
+      "commandLineArgs": "brandon jeffery navarro"
+    }
+  }
+}

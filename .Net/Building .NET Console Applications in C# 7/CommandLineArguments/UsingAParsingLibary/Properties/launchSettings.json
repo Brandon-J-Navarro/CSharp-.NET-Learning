@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "UsingAParsingLibary": {
+      "commandName": "Project",
+      "commandLineArgs": "--message \"hello world\" --times 10"
+    }
+  }
+}

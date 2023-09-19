@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "VerbStyleArguments": {
+      "commandName": "Project",
+      "commandLineArgs": "cook --mins 60 --temp 200"
+    }
+  }
+}
