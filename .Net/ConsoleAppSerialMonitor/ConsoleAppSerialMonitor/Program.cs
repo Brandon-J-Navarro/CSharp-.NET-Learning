@@ -3,7 +3,7 @@ using System.IO.Ports;
 
 namespace ConsoleAppSerialMonitor
 {
-    class SerialPortProgram
+    class Program
     {
         private static readonly string _commPort = ConfigurationManager.AppSettings["CommPort"];
         private static readonly int _baudRate = Convert.ToInt32(ConfigurationManager.AppSettings["BaudRate"]);
@@ -13,15 +13,16 @@ namespace ConsoleAppSerialMonitor
         private static readonly string _stopBitsValue = ConfigurationManager.AppSettings["StopBits"];
         private static readonly StopBits _stopBits = (StopBits)Enum.Parse(typeof(StopBits), _stopBitsValue);
 
-        private SerialPort port = new SerialPort(portName: _commPort, baudRate: _baudRate, parity: _parity, dataBits: _dataBits, stopBits: _stopBits);
+        private static SerialPort _port = new SerialPort(portName: _commPort, baudRate: _baudRate, parity: _parity, dataBits: _dataBits, stopBits: _stopBits);
 
         static void Main(string[] args)
         {
-            while (true)
+            bool _loop = true;
+            while (_loop)
             {
                 try
                 {
-                    new SerialPortProgram();
+                    _loop = SerialPortProgram.ReadSerialPort(_port);
                 }
                 catch (Exception ex)
                 {
@@ -29,14 +30,26 @@ namespace ConsoleAppSerialMonitor
                 }
             }
         }
-        private SerialPortProgram()
+
+    }
+
+    class SerialPortProgram
+    {
+        public static bool ReadSerialPort(SerialPort port)
         {
+            bool _condition = true;
             port.Open();
-            while (true)
+            while (_condition)
             {
-                Console.WriteLine(port.ReadLine());
+                string _line = port.ReadLine();
+                Console.WriteLine(_line);
+                if (_line == "I'm down.\r")
+                {
+                    _condition = false;
+                }
             }
             port.Close();
+            return _condition;
         }
     }
 }
