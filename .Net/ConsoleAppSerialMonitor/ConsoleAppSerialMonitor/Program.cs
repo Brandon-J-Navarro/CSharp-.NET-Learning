@@ -15,14 +15,18 @@ namespace ConsoleAppSerialMonitor
 
         private static SerialPort _port = new SerialPort(portName: _commPort, baudRate: _baudRate, parity: _parity, dataBits: _dataBits, stopBits: _stopBits);
 
-        static void Main(string[] args)
+        static void Main()
         {
-            bool _loop = true;
-            while (_loop)
+            bool _loop = false;
+            while (_loop == false)
             {
                 try
                 {
                     _loop = SerialPortProgram.ReadSerialPort(_port);
+                    if (_loop)
+                    {
+                        Main();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -37,15 +41,15 @@ namespace ConsoleAppSerialMonitor
     {
         public static bool ReadSerialPort(SerialPort port)
         {
-            bool _condition = true;
+            bool _condition = false;
             port.Open();
-            while (_condition)
+            while (_condition == false)
             {
                 string _line = port.ReadLine();
                 Console.WriteLine(_line);
                 if (_line == "I'm down.\r")
                 {
-                    _condition = false;
+                    _condition = true;
                 }
             }
             port.Close();
