@@ -1,0 +1,60 @@
+.resume{
+    width:900px;
+    padding:0 72px;
+    margin-top: 72px;
+    margin-bottom: 72px;
+    background-color:#f9f9f9;
+    border:1px solid #ddd;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+.name{
+    margin-top: 72px;
+    margin-bottom:8.0pt;
+    text-align:center;
+    font-size:35px;
+    color:#0070C0;
+    font-weight: bold;
+}
+.contact{
+    text-align:center;
+    font-weight: normal;
+}
+.intro{
+    margin-top:8.0pt;
+    margin-bottom:8.0pt;
+    line-height:115%;
+    color:black;
+    text-align:justify;
+}
+.skills{
+    text-align: center;
+    border: none rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    line-height: 18px;
+}
+.certs{
+    border: none rgb(0, 0, 0);
+    text-align: center;
+    line-height: 18px;
+    column-width: auto;
+}
+.headers{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15pt;
+    color:#0070C0;
+}
+.bullets{
+    text-align: justify;
+    list-style-type: disc;
+    line-height: 18px;
+}
+.work{
+    text-align: center;
+    text-decoration: underline;
+}
+table {
+    width: 100%;
+}
