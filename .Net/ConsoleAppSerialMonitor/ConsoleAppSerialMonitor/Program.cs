@@ -5,12 +5,12 @@ namespace ConsoleAppSerialMonitor
 {
     class Program
     {
-        private static readonly string _commPort = ConfigurationManager.AppSettings["CommPort"];
-        private static readonly int _baudRate = Convert.ToInt32(ConfigurationManager.AppSettings["BaudRate"]);
-        private static readonly string _parityValue = ConfigurationManager.AppSettings["Parity"];
+        private static readonly string _commPort = System.Configuration.ConfigurationManager.AppSettings["CommPort"];
+        private static readonly int _baudRate = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["BaudRate"]);
+        private static readonly string _parityValue = System.Configuration.ConfigurationManager.AppSettings["Parity"];
         private static readonly Parity _parity = (Parity)Enum.Parse(typeof(Parity), _parityValue);
-        private static readonly int _dataBits = Convert.ToInt32(ConfigurationManager.AppSettings["DataBits"]);
-        private static readonly string _stopBitsValue = ConfigurationManager.AppSettings["StopBits"];
+        private static readonly int _dataBits = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["DataBits"]);
+        private static readonly string _stopBitsValue = System.Configuration.ConfigurationManager.AppSettings["StopBits"];
         private static readonly StopBits _stopBits = (StopBits)Enum.Parse(typeof(StopBits), _stopBitsValue);
 
         private static SerialPort _port = new SerialPort(portName: _commPort, baudRate: _baudRate, parity: _parity, dataBits: _dataBits, stopBits: _stopBits);

@@ -52,8 +52,8 @@
     line-height: 18px;
 }
 .work{
-    text-align: center;
     text-decoration: underline;
+    width: 100%;
 }
 table {
     width: 100%;
